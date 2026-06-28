@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Digital Bodhi Wishes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(to bottom,#001d3d,#021326,#000814);
+
+overflow-x:hidden;
+
+color:white;
+
+min-height:100vh;
+
+}
+
+/*=====================
+
+BACKGROUND BUBBLES
+
+======================*/
+
+.bubble{
+
+position:fixed;
+
+bottom:-100px;
+
+border-radius:50%;
+
+background:rgba(70,255,150,.18);
+
+backdrop-filter:blur(3px);
+
+animation:floatBubble linear infinite;
+
+z-index:-1;
+
+}
+
+@keyframes floatBubble{
+
+0%{
+
+transform:translateY(0) scale(.4);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.8;
+
+}
+
+100%{
+
+transform:translateY(-120vh) scale(1.2);
+
+opacity:0;
+
+}
+
+}
+
+/*=====================
+
+HEADER
+
+======================*/
+
+header{
+
+text-align:center;
+
+padding:25px;
+
+}
+
+header h1{
+
+font-size:35px;
+
+font-weight:700;
+
+color:#9dffca;
+
+text-shadow:
+
+0 0 10px #5cffad,
+
+0 0 30px #39ff88;
+
+}
+
+header p{
+
+margin-top:8px;
+
+color:#d7f5e5;
+
+}
+
+/*=====================
+
+INPUT AREA
+
+======================*/
+
+.container{
+
+width:95%;
+
+max-width:600px;
+
+margin:auto;
+
+text-align:center;
+
+}
+
+textarea{
+
+width:100%;
+
+height:120px;
+
+padding:15px;
+
+border-radius:15px;
+
+border:none;
+
+resize:none;
+
+outline:none;
+
+font-size:16px;
+
+background:#ffffff12;
+
+color:white;
+
+backdrop-filter:blur(10px);
+
+}
+
+textarea::placeholder{
+
+color:#ddd;
+
+}
+
+button{
+
+margin-top:15px;
+
+padding:12px 28px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:17px;
+
+font-weight:bold;
+
+transition:.4s;
+
+}
+
+#addWish{
+
+background:#00ff88;
+
+color:#000;
+
+}
+
+#addWish:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 20px #00ff88;
+
+}
+
+#generateCard{
+
+background:#ffd000;
+
+color:#111;
+
+}
+
+#downloadCard{
+
+background:#4da3ff;
+
+color:white;
+
+display:none;
+
+}
+
+/*=====================
+
+TREE AREA
+
+======================*/
+
+.treeArea{
+
+position:relative;
+
+height:350px;
+
+margin-top:50px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+}
+
+.tree{
+
+font-size:190px;
+
+filter:drop-shadow(0 0 20px #58ff9f);
+
+}
+
+/*=====================
+
+LOTUS
+
+======================*/
+
+.lotus{
+
+position:absolute;
+
+font-size:25px;
+
+animation:lotusGrow 4s forwards;
+
+pointer-events:none;
+
+}
+
+@keyframes lotusGrow{
+
+0%{
+
+transform:translateY(0) scale(.2);
+
+opacity:1;
+
+}
+
+40%{
+
+transform:translateY(-180px) scale(1);
+
+}
+
+70%{
+
+transform:translateY(-220px) scale(2);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-240px) scale(3);
+
+opacity:0;
+
+}
+
+}
+
+/*=====================
+
+CARD PREVIEW
+
+======================*/
+
+.previewTitle{
+
+margin-top:40px;
+
+font-size:22px;
+
+}
+
+#cardPreview{
+
+margin:25px auto;
+
+display:none;
+
+width:360px;
+
+height:640px;
+
+border-radius:20px;
+
+overflow:hidden;
+
+position:relative;
+
+box-shadow:
+
+0 0 40px rgba(0,255,180,.4);
+
+background:
+
+linear-gradient(to bottom,#06355d,#04142d);
+
+}
+
+/* Stars */
+
+#cardPreview:before{
+
+content:"";
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+background-image:
+
+radial-gradient(white 1px,transparent 1px);
+
+background-size:18px 18px;
+
+opacity:.5;
+
+}
+
+/* Moon */
+
+.moon{
+
+position:absolute;
+
+top:55px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:130px;
+
+height:130px;
+
+border-radius:50%;
+
+background:#d8f2ff;
+
+box-shadow:
+
+0 0 40px #8edbff,
+
+0 0 80px #65d0ff;
+
+animation:moonGlow 3s infinite alternate;
+
+}
+
+@keyframes moonGlow{
+
+from{
+
+box-shadow:0 0 20px #90dcff;
+
+}
+
+to{
+
+box-shadow:0 0 80px #90dcff;
+
+}
+
+}
+
+.cardTitle{
+
+position:absolute;
+
+top:20px;
+
+width:100%;
+
+text-align:center;
+
+font-size:33px;
+
+font-weight:bold;
+
+z-index:5;
+
+}
+
+.cardWish{
+
+position:absolute;
+
+top:230px;
+
+padding:25px;
+
+text-align:center;
+
+width:100%;
+
+font-size:22px;
+
+line-height:1.6;
+
+z-index:5;
+
+}
+
+.buddha{
+
+position:absolute;
+
+bottom:45px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:125px;
+
+filter:drop-shadow(0 0 20px #7bdfff);
+
+animation:buddhaGlow 3s infinite alternate;
+
+}
+
+@keyframes buddhaGlow{
+
+from{
+
+filter:drop-shadow(0 0 10px #7ddfff);
+
+}
+
+to{
+
+filter:drop-shadow(0 0 30px #b3f0ff);
+
+}
+
+}
+
+.grass{
+
+position:absolute;
+
+bottom:0;
+
+width:100%;
+
+height:80px;
+
+background:linear-gradient(#0b692b,#083e1b);
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🌳 Digital Bodhi Leaf Wishes 🌳</h1>
+
+<p>Write your wish and offer it to the Bodhi Tree</p>
+
+</header>
+
+<div class="container">
+
+<textarea id="wish" placeholder="Type your Vesak Wish..."></textarea>
+
+<br>
+
+<button id="addWish">🍃 Add To Bodhi Tree</button>
+
+<button id="generateCard">Generate Card</button>
+
+<button id="downloadCard">Download Card</button>
+
+<h2 class="previewTitle">Card Preview</h2>
+
+<div id="cardPreview">
+
+<div class="moon"></div>
+
+<div class="cardTitle">
+Happy<br>Vesak Day
+</div>
+
+<div class="cardWish" id="wishText"></div>
+
+<div class="buddha">🧘</div>
+
+<div class="grass"></div>
+
+</div>
+
+</div>
+
+<div class="treeArea">
+
+<div class="tree">🌳</div>
+
+</div>
+<script>
+
+// =======================
+// Green Bubble Animation
+// =======================
+
+function createBubble(){
+
+const bubble=document.createElement("div");
+
+bubble.className="bubble";
+
+const size=Math.random()*60+20;
+
+bubble.style.width=size+"px";
+bubble.style.height=size+"px";
+
+bubble.style.left=Math.random()*100+"vw";
+
+bubble.style.animationDuration=(Math.random()*10+10)+"s";
+
+document.body.appendChild(bubble);
+
+setTimeout(()=>{
+bubble.remove();
+},20000);
+
+}
+
+setInterval(createBubble,500);
+
+
+// =======================
+// Add To Bodhi Tree
+// =======================
+
+document.getElementById("addWish").onclick=function(){
+
+const text=document.getElementById("wish").value.trim();
+
+if(text==""){
+alert("Please type your Vesak wish.");
+return;
+}
+
+const lotus=document.createElement("div");
+
+lotus.className="lotus";
+
+lotus.innerHTML=
+
+"<div style='font-size:16px;margin-bottom:8px;'>"+text+"</div>🌸";
+
+lotus.style.left=(window.innerWidth/2-50+Math.random()*100)+"px";
+
+lotus.style.bottom="120px";
+
+document.body.appendChild(lotus);
+
+setTimeout(()=>{
+lotus.remove();
+},4000);
+
+}
+
+
+// =======================
+// Generate Card
+// =======================
+
+document.getElementById("generateCard").onclick=function(){
+
+const wish=document.getElementById("wish").value.trim();
+
+if(wish==""){
+
+alert("Please type your Vesak wish.");
+
+return;
+
+}
+
+document.getElementById("wishText").innerHTML=wish;
+
+document.getElementById("cardPreview").style.display="block";
+
+document.getElementById("downloadCard").style.display="inline-block";
+
+}
+
+
+// =======================
+// Moon Sparkles
+// =======================
+
+setInterval(()=>{
+
+const star=document.createElement("div");
+
+star.style.position="fixed";
+
+star.style.width="4px";
+
+star.style.height="4px";
+
+star.style.background="white";
+
+star.style.borderRadius="50%";
+
+star.style.left=Math.random()*window.innerWidth+"px";
+
+star.style.top=Math.random()*window.innerHeight+"px";
+
+star.style.opacity=".8";
+
+star.style.boxShadow="0 0 10px white";
+
+document.body.appendChild(star);
+
+setTimeout(()=>{
+
+star.remove();
+
+},2500);
+
+},200);
+
+</script>
+</body>
+</html>
